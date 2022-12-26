@@ -4,8 +4,8 @@ SECRETS_DIR=$(PWD)/secrets
 tfvars := $(SECRETS_DIR)/terrform.tfvars
 params_yaml := $(SECRETS_DIR)/params.yaml
 
-hostname		?= $(shell yq .hostname $(params_yaml))
-kurl_yaml		:= $$(yq '.spec.kubernetes.clusterName="$(hostname)"' kurl-installer.yaml)
+cluster_name ?= $(shell yq .cluster_name $(params_yaml))
+kurl_yaml		 := $$(yq '.spec.kubernetes.clusterName="$(cluster_name)"' kurl-installer.yaml)
 
 vsphere_server    := "$(shell yq .vsphere.server $(params_yaml))"
 vsphere_username  := "$(shell yq .vsphere.username $(params_yaml))"
@@ -20,7 +20,7 @@ template_folder := /garage/vm/templates/tanzu
 key_fp  := FAC1CF820538F4A07C8F4657DAD5DC6A21303194
 
 define TFVARS
-hostname				 = "$(hostname)"
+cluster_name				 = "$(cluster_name)"
 domain					 = "$(shell yq e .domain $(params_yaml))"
 project_root		 = "$(PROJECT_DIR)"
 

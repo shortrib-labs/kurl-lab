@@ -81,7 +81,7 @@ resource "vsphere_virtual_machine" "control_plane" {
       "password"    = random_pet.default_password.id
       "user-data"   = base64encode(<<-DATA
                       #cloud-config
-                      fqdn: ${local.server_name}
+                      fqdn: ${local.cluster_fqdn}
                       ${data.carvel_ytt.user_data.result}
                       DATA
                       )

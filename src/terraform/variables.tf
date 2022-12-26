@@ -2,7 +2,7 @@ variable "project_root" {
   type = string
 }
 
-variable "hostname" {
+variable "cluster_name" {
   type = string
 }
 
@@ -87,8 +87,8 @@ variable "kurl_script" {
 }
 
 locals {
-  vm_prefix      = "${var.hostname}"
-  server_name    = "${var.hostname}.${var.domain}"
+  vm_prefix      = "${var.cluster_name}"
+  cluster_fqdn   = "${var.cluster_name}.${var.domain}"
   vsphere_folder = "${var.vsphere_datacenter}/vm/${var.vsphere_folder}"
   directories = {
     work = "${var.project_root}/work"
