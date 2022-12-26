@@ -49,4 +49,6 @@ make encrypt
 Take a look at the file any you'll notice the sensitive entries are encrypted
 and the SOPS metadata has been set for your own configuration.
 
-Next: [Create the Management Cluster](04-create-management-cluster.md)
+## Go to Next Step
+
+[Create the Management Cluster](04-create-management-cluster.md)

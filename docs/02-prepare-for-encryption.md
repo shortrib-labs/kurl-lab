@@ -56,4 +56,6 @@ key.
 yq -i ".creation_rules[].pgp = \"${KEY_FP}\"" .sops.yaml
 ```
 
-Next: [Set your parameters](03-set-parameters.md)
+## Go to Next Step
+
+[Set your parameters](03-set-parameters.md)

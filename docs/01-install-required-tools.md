@@ -14,5 +14,6 @@ install themi for you.
 ```bash
 make brew
 ```
+## Go to Next Step
 
-Next Step: [Prepare for Encryption](02-prepare-for-encryption)
+[Prepare for Encryption](02-prepare-for-encryption)
