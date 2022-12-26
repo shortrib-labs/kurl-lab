@@ -81,6 +81,7 @@ resource "vsphere_virtual_machine" "control_plane" {
       "password"    = random_pet.default_password.id
       "user-data"   = base64encode(<<-DATA
                       #cloud-config
+                      hostname: ${var.cluster_name}
                       fqdn: ${local.cluster_fqdn}
                       ${data.carvel_ytt.user_data.result}
                       DATA
@@ -187,6 +188,7 @@ resource "vsphere_virtual_machine" "worker" {
       "password"    = random_pet.default_password.id
       "user-data"   = base64encode(<<-DATA
                       #cloud-config
+                      hostname: ${local.vm_prefix}-worker-${random_id.worker[count.index].hex}
                       fqdn: ${local.vm_prefix}-worker-${random_id.worker[count.index].hex}.${var.domain}
                       ${data.carvel_ytt.user_data.result}
                       DATA

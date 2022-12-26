@@ -5,14 +5,13 @@ metadata:
 spec: 
   kubernetes: 
     version: "1.25.x"
+    cisCompliance: true
   flannel: 
     version: "0.20.x"
   contour: 
     version: "1.23.x"
   prometheus: 
     version: "0.60.x"
-  registry: 
-    version: "2.8.x"
   containerd: 
     version: "1.6.x"
   ekco: 
@@ -21,4 +20,3 @@ spec:
     version: "1.7.x"
   certManager: 
     version: "1.9.x"
-
