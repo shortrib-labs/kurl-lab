@@ -15,7 +15,7 @@ own values you the best way to do that is to fork this repo and traack those
 changes in your own fork.
 
 ```bash
-gh fork repo crdant/kurl-lab
+gh fork repo shortrib-labs/kurl-lab
 cd kurl-lab
 ```
 
