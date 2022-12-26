@@ -40,6 +40,9 @@ vsphere_folder	  = "$(shell yq .vsphere.folder $(params_yaml))"
 kurl_script = "curl $(shell curl --silent -H 'Content-Type: text/yaml' --data-raw "$(kurl_yaml)" 'https://kurl.sh/installer' && echo "") | sudo bash"
 endef
 
+.PHONY: brew
+	@brew bundle install
+
 .PHONY: tfvars
 tfvars: $(tfvars)
 
