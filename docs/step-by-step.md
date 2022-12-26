@@ -26,3 +26,5 @@ Back? Great, let's keep going.
 
 1. [Install required tools](01-install-required-tools.md)
 2. [Prepare for encryption](02-prepare-for-encryption)
+3. [Set your paraameters](03-set-parameters.md)
+
