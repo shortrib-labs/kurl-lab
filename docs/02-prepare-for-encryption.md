@@ -52,7 +52,7 @@ key.
 
 3. Make sure you are using your new key with SOPS
 
-``bash
+```bash
 yq -i ".creation_rules[].pgp = \"${KEY_FP}\"" .sops.yaml
 ```
 

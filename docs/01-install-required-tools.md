@@ -16,4 +16,4 @@ make brew
 ```
 ## Go to Next Step
 
-[Prepare for Encryption](02-prepare-for-encryption)
+[Prepare for Encryption](02-prepare-for-encryption.md)
