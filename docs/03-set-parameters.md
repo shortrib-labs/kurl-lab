@@ -16,7 +16,7 @@ SOPS complaining when you try to encrypted it. Update the file to set the
 values for your own lab.
 
 | Key | Description |
----------------------
+|-----|-------------|
 | domain | the subdomain for the cluster |
 | default_password | a password for the default user `ubuntu` on the cluster VMs |
 | ssh.authorized_keys | a list of SSH public keys you want to use to access the system |
