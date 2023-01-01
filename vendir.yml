@@ -2,3 +2,28 @@ apiVersion: vendir.k14s.io/v1alpha1
 kind: Config
 minimumRequiredVersion: 0.8.0
 directories:
+- path: platform/baseline/metallb/upstream
+  contents:
+  - path: .
+    git:
+      url: https://github.com/metallb/metallb
+      ref: v0.13.7
+    includePaths:
+    - config/manifests/metallb-native.yaml
+- path: platform/baseline/vsphere-csi-driver/upstream
+  contents:
+  - path: .
+    git:
+      url: https://github.com/kubernetes-sigs/vsphere-csi-driver.git
+      ref: v2.7.0
+    includePaths:
+    - manifests/vanilla/namespace.yaml
+    - manifests/vanilla/vsphere-csi-driver.yaml
+- path: platform/baseline/kyverno/upstream
+  contents: 
+  - path: .
+    git:
+      url: https://github.com/kyverno/kyverno.git
+      ref: v1.7.5
+    includePaths:
+    - config/install.yaml

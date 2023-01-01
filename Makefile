@@ -40,6 +40,19 @@ vsphere_folder	  = "$(shell yq .vsphere.folder $(params_yaml))"
 kurl_script = "curl $(shell curl --silent -H 'Content-Type: text/yaml' --data-raw "$(kurl_yaml)" 'https://kurl.sh/installer' && echo "") | sudo bash"
 endef
 
+define CSI_CONFIG
+[Global]
+cluster-id = "$(cluster_name)"
+thumbprint = "$(shell yq .vsphere.thumbprint $(params_yaml))"
+
+[VirtualCenter "$(shell yq .vsphere.server $(params_yaml))"]
+insecure-flag = "false"
+user = "$(shell yq .vsphere.username $(params_yaml))"
+password  = "$(shell sops --decrypt --extract '["vsphere"]["password"]' $(params_yaml))"
+port = "443"
+datacenters = "$(shell yq .vsphere.datacenter $(params_yaml))"
+endef 
+
 .PHONY: brew
 	@brew bundle install
 
@@ -55,14 +68,15 @@ init: $(tfvars)
 	@(cd $(SOURCE_DIR)/terraform && terraform init)
 
 .PHONY: all
-all: create 
+all: management-cluster 
 
-.PHONY: create
-create: init test cluster
-
+export CSI_CONFIG
 .PHONY: cluster
-cluster: $(tfvars) init
+management-cluster: $(tfvars) init
 	@(cd $(SOURCE_DIR)/terraform && terraform apply -var-file $(tfvars) --auto-approve)
+	@kubectl taint nodes lacewing.lab.shortrib.net node-role.kubernetes.io/control-plane=:NoSchedule --overwrite
+	@kustomize build infrastructure | kubectl apply -f - 
+	@kubectl create -n vmware-system-csi secret generic vsphere-config-secret --from-literal=csi-vsphere.conf="$${CSI_CONFIG}" 
 
 .PHONY: test
 test: $(tfvars)
