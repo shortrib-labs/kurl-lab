@@ -1,0 +1,60 @@
+---
+apiVersion: kots.io/v1beta1
+kind: Config
+metadata:
+  name: platform-config
+spec:
+  groups:
+  - name: general
+    title: General
+    description: Defines high-level configuration parameters 
+    items:
+    - name: role
+      title: Role
+      help_text: Determines which services to deploy based on the role this installation will play
+      default: workload
+      type: select_one
+      items:
+      - name: management
+        title: Management
+      - name: services
+        title: Shared Services
+      - name: workload
+        title: Workload
+      required: true
+    - name: subdomain
+      title: Subdomain
+      help_text: Specifies the subdomain for services running under this installation
+      type: text
+      required: true
+    - name: email
+      title: Admin Email
+      help_text: Email address for the admin, used for things like Let's encrypt
+      type: text
+      required: true
+  - name: logging
+    title: Logging
+    items: []
+    when: '{{repl (ConfigOptionEquals "role" "management")}}'
+ 
+  - name: vault
+    title: Vault
+    items: []
+    when: '{{repl (ConfigOptionEquals "role" "management")}}'
+  - name: spire
+    title: Spire
+    items: []
+    when: '{{repl (ConfigOptionEquals "role" "management")}}'
+  - name: harbor
+    title: Registry
+    when: '{{repl (ConfigOptionEquals "role" "services")}}'
+    items:
+    - name: password
+      title: Admin Password
+      type: password
+      recomended: true
+  - name: tekton
+    title: Tekton
+    when: '{{repl (ConfigOptionEquals "role" "services")}}'
+    items: []
+

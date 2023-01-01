@@ -2,7 +2,7 @@ apiVersion: vendir.k14s.io/v1alpha1
 kind: Config
 minimumRequiredVersion: 0.8.0
 directories:
-- path: platform/baseline/metallb/upstream
+- path: infrastructure/metallb/upstream
   contents:
   - path: .
     git:
@@ -10,7 +10,7 @@ directories:
       ref: v0.13.7
     includePaths:
     - config/manifests/metallb-native.yaml
-- path: platform/baseline/vsphere-csi-driver/upstream
+- path: infrastructure/vsphere-csi-driver/upstream
   contents:
   - path: .
     git:

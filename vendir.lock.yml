@@ -7,7 +7,7 @@ directories:
       tags:
       - v0.13.7
     path: .
-  path: platform/baseline/metallb/upstream
+  path: infrastructure/metallb/upstream
 - contents:
   - git:
       commitTitle: tag images for 2.7 release (#2058)
@@ -15,7 +15,7 @@ directories:
       tags:
       - v2.7.0
     path: .
-  path: platform/baseline/vsphere-csi-driver/upstream
+  path: infrastructure/vsphere-csi-driver/upstream
 - contents:
   - git:
       commitTitle: bump golang 1.18.5 version digest in Dockerfile (#4413) (#4876)...
